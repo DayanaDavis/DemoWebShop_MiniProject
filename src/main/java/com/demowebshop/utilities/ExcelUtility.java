@@ -14,6 +14,16 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ExcelUtility {
+    public String readSingleData(int i, int j, String filepath,String sheetname) throws IOException {
+        FileInputStream inputStream = new FileInputStream(filepath);
+        XSSFWorkbook wb = new XSSFWorkbook(inputStream);
+        XSSFSheet sheet = wb.getSheet(sheetname);
+        Row r = sheet.getRow(i);
+        Cell c = r.getCell(j);
+        DataFormatter formatter = new DataFormatter();
+        String value = formatter.formatCellValue(sheet.getRow(i).getCell(j));
+        return value;
+    }
     public Object[][] readDataFromExcel(String filePath, String sheetName) throws IOException {
         FileInputStream file = new FileInputStream(filePath);
         XSSFWorkbook workbook = new XSSFWorkbook(file);
@@ -29,6 +39,7 @@ public class ExcelUtility {
             }
             System.out.println();
         }
+        workbook.close();
         file.close();
         return data;
     }
