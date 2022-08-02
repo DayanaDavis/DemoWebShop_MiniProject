@@ -13,11 +13,15 @@ public class HomePageTest extends Base {
     HomePage home;
     ExcelUtility excelUtility;
     @Test
-    public void verifyHomePageTitle() throws IOException {
+    public void verifyHomePageTitle() {
         home=new HomePage(driver);
         excelUtility=new ExcelUtility();
-        String filepath = System.getProperty("user.dir") + "\\src\\main\\resources\\testData.xlsx";
-        String expectedTitle=excelUtility.readSingleData(1,0,filepath,"HomePage");
+        String expectedTitle= null;
+        try {
+            expectedTitle = excelUtility.readSingleData(1,0,"HomePage");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         String actualTitle=home.getHomePageTitle();
         Assert.assertEquals(actualTitle,expectedTitle,"Error: Invalid Home Page Title");
     }

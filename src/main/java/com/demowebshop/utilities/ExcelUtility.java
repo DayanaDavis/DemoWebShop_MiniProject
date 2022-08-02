@@ -14,7 +14,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ExcelUtility {
-    public String readSingleData(int i, int j, String filepath,String sheetname) throws IOException {
+    public String readSingleData(int i, int j,String sheetname) throws IOException {
+        String filepath = System.getProperty("user.dir") + "\\src\\main\\resources\\testData.xlsx";
         FileInputStream inputStream = new FileInputStream(filepath);
         XSSFWorkbook wb = new XSSFWorkbook(inputStream);
         XSSFSheet sheet = wb.getSheet(sheetname);

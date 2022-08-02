@@ -14,6 +14,10 @@ public class PageUtility {
      String title=driver.getTitle();
      return title;
     }
+    public String getElementText(WebElement element){
+       String text=element.getText();
+       return text;
+    }
     public void clickOnElement(WebElement element){
       element.click();
     }
